@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        table, td, tr,th {
+          border: 1px solid;
+          border-radius: 5px;
+        }
+        
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+        
+        tr {
+          height: 34px;
+        }
+        td,tr {
+            background-color: #2b333b;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        th {
+            text-align: right;
+            padding: 25px;
+        }
+    
+        </style>
+        <script>
+            const buttonNumberClicked = (value) => {
+                const elementDisplay= document.getElementById('display');
+                elementDisplay.innerHTML += value;
+            };  
+
+            const buttonCEClicked = () =>{
+                const elementDisplay= document.getElementById('display');
+                elementDisplay.innerHTML = " ";
+            }
+        </script>
+</head>
+<body>
+    <table>
+    <tr>
+        <th id ="display" colspan="4"></th>
+    </tr>
+
+    <tr>
+        <td colspan="3" onclick="buttonCEClicked()">CE</td>
+        <td onclick="buttonNumberClicked('=')">=</td>
+        </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(7)">7</td>
+        <td onclick="buttonNumberClicked(8)">8</td>
+        <td onclick="buttonNumberClicked(9)">9</td>
+        <td onclick="buttonNumberClicked('/')">:</td>
+    </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(4)">4</td>
+        <td onclick="buttonNumberClicked(5)">5</td>
+        <td onclick="buttonNumberClicked(6)">6</td>
+        <td onclick="buttonNumberClicked('*')">x</td>
+    </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(1)">1</td>
+        <td onclick="buttonNumberClicked(2)">2</td>
+        <td onclick="buttonNumberClicked(3)">3</td>
+        <td onclick="buttonNumberClicked('-')">-</td>
+    </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(0)"colspan="2">0</td>
+        <td onclick="buttonNumberClicked('.')">.</td>
+        <td onclick="buttonNumberClicked('+')">+</td>
+    </tr>
+</table>
+</body>
+</html>
