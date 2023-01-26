@@ -3,9 +3,18 @@
 <head>
     <title>Calculator</title>
     <style>
+        body {
+			padding: 25px;
+			color: black;
+			font-size: 25px;
+			background-color: white;
+		}
+
         table, td, tr,th {
           border: 1px solid;
           border-radius: 5px;
+          text-align: center;
+          padding: 25px;
         }
         
         table {
@@ -16,39 +25,84 @@
         tr {
           height: 34px;
         }
-        td,tr {
-            background-color: #2b333b;
-            color: white;
-            text-align: center;
-            padding: 25px;
+        
+	  .dark-mode table {
+            background-color: black;
+		color: white;
         }
+		
         th {
             text-align: right;
             padding: 25px;
         }
-    
+        select{
+            padding: 10px;
+            background-color: white;   
+            text-align: center;
+                 
+        }
+      
         </style>
         <script>
             const buttonNumberClicked = (value) => {
                 const elementDisplay= document.getElementById('display');
-                elementDisplay.innerHTML += value;
+                if (elementDisplay.innerHTML == "0") {
+                    elementDisplay.innerHTML = value;
+                } else {
+                    elementDisplay.innerHTML += value;
+                }
+                
             };  
 
             const buttonCEClicked = () =>{
                 const elementDisplay= document.getElementById('display');
-                elementDisplay.innerHTML = " ";
+                elementDisplay.innerHTML = "0";
             }
+
+            const buttonCalculateClicked = () =>{
+                const elementDisplay= document.getElementById('display');
+                const param = elementDisplay.innerHTML;
+                elementDisplay.innerHTML = eval(param);
+            }
+         
+               
+            function myFunction() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+            const increaseFontSize = () => {
+                const columns = document.getElementsByTagName('td');
+                for (let i = 0; i < columns.length; i++) {
+                var style = window.getComputedStyle(columns[i], null).getPropertyValue('font-size');
+    			var currentSize = parseFloat(style);
+			    var newFontSize = currentSize+5;
+		        columns[i].style.fontSize = newFontSize+"px";                
+                }
+                
+                
+            }
+
+            const decreaseFontSize = () => {
+                const columns = document.getElementsByTagName('td');
+                for (let i = 0; i < columns.length; i++) {
+                var style = window.getComputedStyle(columns[i], null).getPropertyValue('font-size');
+    			var currentSize = parseFloat(style);
+			    var newFontSize = currentSize-5;
+		        columns[i].style.fontSize = newFontSize+"px";
+                }
+            }
+       
         </script>
 </head>
-<body>
+<body>  
     <table>
     <tr>
-        <th id ="display" colspan="4"></th>
+        <th id ="display" colspan="4">0</th>
     </tr>
 
     <tr>
         <td colspan="3" onclick="buttonCEClicked()">CE</td>
-        <td onclick="buttonNumberClicked('=')">=</td>
+        <td onclick="buttonCalculateClicked()">=</td>
         </tr>
 
     <tr>
@@ -78,5 +132,12 @@
         <td onclick="buttonNumberClicked('+')">+</td>
     </tr>
 </table>
+<br> 
+    <select id="mySelect" onchange="myFunction()">
+    <option value="white">white</option>
+    <option value="black">black</option>
+    </select>
+    <button type="button" id="increase" onclick="increaseFontSize()">+</button>
+    <button type="button" id="decrease" onclick="decreaseFontSize()">-</button>
 </body>
 </html>
