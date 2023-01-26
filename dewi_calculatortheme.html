@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        table, td, tr,th {
+          border: 1px solid;
+          border-radius: 5px;
+        }
+        
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+        
+        tr {
+          height: 30px;
+        }
+        td,tr {
+            background-color: #70757a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+        th {
+            text-align: right;
+            padding: 20px;
+        }
+        td.white{
+            background-color: white;
+            color: black;
+        }
+    
+        </style>
+        <script>
+            const buttonNumberClicked = (value) => {
+                const elementDisplay= document.getElementById('display');
+                elementDisplay.innerHTML += value;
+            };
+
+            const buttonCEClicked = () =>{
+                const elementDisplay= document.getElementById('display');
+                elementDisplay.innerHTML = " ";
+            
+            }
+
+            const setTheme = () =>{
+                const elementSelect= document.getElementById('select-theme');
+                const selectedTheme = elementSelect.value; 
+                const columns = document.getElementsByTagName('td');
+                console.log({columns});
+
+                if (selectedTheme == 'white') {
+                    for (let i = 0; i < columns.length; i++) {
+                        columns[i].classList.add('white');
+                    }
+
+                }else {
+                    for (let i = 0; i < columns.length; i++) {
+                        columns[i].classList.remove('white');
+                    }
+                    }
+            }
+            
+            const increaseFontSize = () => {
+                const columns = document.getElementsByTagName('td');
+                for (let i = 0; i < columns.length; i++) {
+                    columns[i].style.fontSize = "50px";
+                }
+            }
+
+            const decreaseFontSize = () => {
+                const columns = document.getElementsByTagName('td');
+                for (let i = 0; i < columns.length; i++) {
+                    columns[i].style.fontSize = "10px";
+                }
+            }
+    
+        
+    </script>
+</head>
+<body>
+    <table>
+    <tr>
+        <td id ="display" colspan="4"></td>
+    </tr>
+
+    <tr>
+        <td colspan="3" onclick="buttonCEClicked()">CE</td>
+        <td onclick="buttonNumberClicked('=')">=</td>
+        </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(7)">7</td>
+        <td onclick="buttonNumberClicked(8)">8</td>
+        <td onclick="buttonNumberClicked(9)">9</td>
+        <td onclick="buttonNumberClicked('/')">:</td>
+    </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(4)">4</td>
+        <td onclick="buttonNumberClicked(5)">5</td>
+        <td onclick="buttonNumberClicked(6)">6</td>
+        <td onclick="buttonNumberClicked('*')">x</td>
+    </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(1)">1</td>
+        <td onclick="buttonNumberClicked(2)">2</td>
+        <td onclick="buttonNumberClicked(3)">3</td>
+        <td onclick="buttonNumberClicked('-')">-</td>
+    </tr>
+
+    <tr>
+        <td onclick="buttonNumberClicked(0)"colspan="2">0</td>
+        <td onclick="buttonNumberClicked('.')">.</td>
+        <td onclick="buttonNumberClicked('+')">+</td>
+    </tr>
+</table>
+<label for="select-theme">Choose theme:</label>
+<select name="theme" id="select-theme" onchange="setTheme()">
+  <option value="black">black</option>
+  <option value="white">white</option>
+</select>
+<button type="button" id="increase" onclick="increaseFontSize()">+</button>
+<button type="button" id="decrease" onclick="decreaseFontSize()">-</button>
+</body>
+</html>
